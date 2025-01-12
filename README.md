@@ -1,6 +1,13 @@
+O.K. company
+
+_We no longer do implements._
+_ _ _ _ _
+
+License
+
 All Rights Reserved
 
-Copyright 2025 A Gloeb
+Copyright 2024 A. Gloeb
 
 All rights reserved. This work is licensed under the following terms:
 
