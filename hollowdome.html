@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hollowdome</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+@font-face {
+font-family: BIZGothic;
+src: url(fonts/BIZUDGothic-Regular.ttf);
+}
+html{
+font-family: 'BIZGothic';
+}
+body{
+margin: 0!important;
+overflow: hidden;
+}
+.bkg{
+width: 100vw;
+height: 110vh;
+}
+.text{
+background-color: none;
+color:rgb(255, 255, 255);
+position: absolute;
+margin: 50px;
+filter: blur(1px);
+font-size: 22px;
+display: inline-block;
+filter:blur(2px);
+}
+.text:hover{
+cursor: pointer;
+}
+#piece:hover{
+background-color: rgba(130, 185, 247, 0.809);
+filter:blur(3px);
+}
+#burn{
+text-decoration: none;
+color: rgb(255, 255, 255);
+transform: skew(-40deg);
+}
+#burn:hover{
+background-color: rgba(242, 134, 208, 0.809);
+}
+canvas {
+position: absolute;
+top: 0;
+left: 0;
+pointer-events: none; 
+margin: 50px;
+height: 100vh;
+position: absolute;
+top: 0;
+left: 0;
+pointer-events: none; 
+animation: scroll 50s linear infinite;
+}
+@keyframes scroll {
+from {
+transform: translateX(0%);
+}
+to {
+transform: translateX(-50%);
+}}
+@media only screen and (max-width: 600px){
+.bkg{
+width: 100vh!important;
+height: auto!important;
+
+}
+body{
+background-color: black;
+}
+.text #textCanvas{
+position: absolute;
+z-index: 1!important;
+}
+}
+</style>
+</head>
+<body>
+<div class="text">
+<p id="piece">saw it in the dome shot it off the wall sunk into floor now yer looking at the <a href="burn.html" id="burn">pile of crap</a>you took back from the burn pile.</p>
+</div>
+<canvas id="textCanvas"></canvas>
+<img src="img/barn.png" class="bkg">
+<script>
+function randomizePixels() {
+    const pieceElement = document.getElementById('piece');
+    const canvas = document.getElementById('textCanvas');
+    const ctx = canvas.getContext('2d');
+
+    const rect = pieceElement.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.font = '10px BIZGothic'; 
+    ctx.fillStyle = 'rgb(68, 68, 205)';
+    ctx.textBaseline = 'top';
+    const maxWidth = canvas.width;
+
+    function wrapText(text, x, y, maxWidth) {
+        let words = text.split(' ');
+        let line = '';
+        let lineHeight = parseInt(window.getComputedStyle(pieceElement).fontSize, 10);
+
+        for (let n = 0; n < words.length; n++) {
+            let testLine = line + words[n] + ' ';
+            let testWidth = ctx.measureText(testLine).width;
+
+            if (testWidth > maxWidth && n > 0) {
+                ctx.fillText(line, x, y);
+                line = words[n] + ' ';
+                y += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+        ctx.fillText(line, x, y);
+    }
+
+    wrapText(pieceElement.innerText, 0, 0, maxWidth);
+
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const data = imageData.data;
+
+    const numPixelsToRemove = 1000; 
+    for (let i = 0; i < numPixelsToRemove; i++) {
+        const x = Math.floor(Math.random() * canvas.width);
+        const y = Math.floor(Math.random() * canvas.height);
+        const index = (y * canvas.width + x) * 4;
+
+        data[index + 3] = 0;
+    }
+
+    ctx.putImageData(imageData, 0, 0);
+}
+
+window.onload = function() {
+    randomizePixels();
+    setInterval(randomizePixels, 300); 
+}
+</script>
+</body>
+</html>
