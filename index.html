@@ -1,25 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>gloeb</title> 
-<link rel="icon" href="img/favicon.png"/>
-<style>
-body{
-white-space: pre;
-font-family: Courier;
-overflow: none!important;
-text-align: center;
-justify-content: center;
-}
-img{
-
-}
-</style>
+  <meta charset="UTF-8">
+  <title>a gloeb</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<img src="img/gloeb.png">
+  <canvas id="webgl"></canvas>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/examples/": "https://unpkg.com/three@0.160.0/examples/jsm/",
+      "gsap": "https://cdn.skypack.dev/gsap"
+    }
+  }
+  </script>
+
+  <script type="module" src="main.js"></script>
 </body>
-<script>
-var subtitle
-</script>
 </html>
