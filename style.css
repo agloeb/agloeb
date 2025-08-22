@@ -8,3 +8,13 @@ body {
 canvas {
   display: block;
 }
+
+header{
+height: 170.2px;
+background-color: black;
+}
+
+img{
+padding-left: 15px;
+padding-top: 10px;
+}
