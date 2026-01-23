@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head><title>offer</title><style>html{overflow: hidden;}.box{position: relative;width: 100%;height: 100vh;display: flex;justify-content: center;align-items: center;}#pedestal{width: 200px;}#cat{position: absolute; width: 50px;cursor: grab;z-index: 1;transform: translateX(-10vw);}</style></head>
+<body><div class="box"><img src="img/pedestal.png" id="pedestal"><img src="img/cat.png" id="cat"></div></body>
+<script>
+dragElement(document.getElementById("cat"));
+
+    function dragElement(elmnt) {
+      var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      if (document.getElementById(elmnt.id + "header")) {
+        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+      } else {
+        elmnt.onmousedown = dragMouseDown;
+      }
+    
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+    
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+    }
+
+    function closeDragElement() {
+  document.onmouseup = null;
+  document.onmousemove = null;
+
+  checkPlacement();
+}
+function checkPlacement() {
+  const cat = document.getElementById("cat");
+  const pedestal = document.getElementById("pedestal");
+
+  const catRect = cat.getBoundingClientRect();
+  const pedRect = pedestal.getBoundingClientRect();
+
+  const overlap =
+    catRect.left < pedRect.right &&
+    catRect.right > pedRect.left &&
+    catRect.top < pedRect.bottom &&
+    catRect.bottom > pedRect.top;
+
+  if (overlap) {
+    // small pause feels ceremonial
+    setTimeout(() => {
+      window.location.href = "index.html";
+    }, 400);
+  }
+}
+const overlapArea =
+  Math.min(catRect.right, pedRect.right) -
+  Math.max(catRect.left, pedRect.left);
+
+if (overlapArea > catRect.width * 0.6) {
+  // success
+}
+
+}
+</script>
+</html>
