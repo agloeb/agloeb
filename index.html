@@ -1,26 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>a gloeb</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
+<html>
+<head><link rel="stylesheet" href="style.css"></head>
 <body>
-    <header>
-    <img src="assets/img/gloeb_i.png" width="300px">
-    </header> 
-  <canvas id="webgl"></canvas>
+<div><img src="img/cat.png" id="changer"></div>
+<div id="pheasant">
+  <p class="title" id="title">
+  </p>
+  <br>
+  <p class="text" id="text">
 
-  <script type="importmap">
-  {
-    "imports": {
-      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-      "three/examples/": "https://unpkg.com/three@0.160.0/examples/jsm/",
-      "gsap": "https://cdn.skypack.dev/gsap"
-    }
-  }
-  </script>
-
-  <script type="module" src="main.js"></script>
+  </p>
+</div>
 </body>
+<script src="content.js"></script>
+<script src="main.js"></script>
 </html>

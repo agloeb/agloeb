@@ -1,20 +1,46 @@
-body {
-  margin: 0;
-  overflow: hidden;
-  background: #111;
-  font-family: sans-serif;
+@font-face {
+    font-family: alte-reg;
+    src: url(font/AlteHaasGroteskRegular.ttf);
 }
-
-canvas {
-  display: block;
+@font-face {
+    font-family: alte-fat;
+    src: url(font/AlteHaasGroteskBold.ttf);
 }
-
-header{
-height: 170.2px;
-background-color: black;
+html{
+    overflow: hidden;
+    
+    font-family: alte-reg;
+    background-color: black;
 }
-
+body{
+    margin-left: 200px;
+    margin-top: 230px;
+    filter: blur(.7px);
+}
+p{
+    justify-content: center;
+    text-align: left;
+    color:rgb(235, 235, 187);
+}
+.title{
+    font-size: small;
+    font-family: alte-fat;
+    background-color: blue;
+    height: 90px;
+    width: 302px;
+    display: block;
+    filter: blur(.3px);
+}
+.text{
+    width: 290px;
+    filter: blur(.7px);
+}
 img{
-padding-left: 15px;
-padding-top: 10px;
+    height: 60px;
+    position: absolute;
+    top: 11px;
+    left: 315px;
+}
+.title, .text {
+  transition: opacity 2s ease;
 }
